@@ -39,6 +39,16 @@ class Category
      */
     private $articles;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Categorie;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdate;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -111,6 +121,30 @@ class Category
                 $article->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->Categorie;
+    }
+
+    public function setCategorie(string $Categorie): self
+    {
+        $this->Categorie = $Categorie;
+
+        return $this;
+    }
+
+    public function getCreatedate(): ?\DateTimeInterface
+    {
+        return $this->createdate;
+    }
+
+    public function setCreatedate(\DateTimeInterface $createdate): self
+    {
+        $this->createdate = $createdate;
 
         return $this;
     }
