@@ -42,11 +42,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Categorie;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
+    
     private $createdate;
 
     public function __construct()
