@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Articles
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
      */
     private $Category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="Category")
+     */
+    private $article_id;
+
+    public function __construct()
+    {
+        $this->article_id = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +115,33 @@ class Articles
     public function setCategory(?Category $Category): self
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getArticleId(): Collection
+    {
+        return $this->article_id;
+    }
+
+    public function addArticleId(Tag $articleId): self
+    {
+        if (!$this->article_id->contains($articleId)) {
+            $this->article_id[] = $articleId;
+            $articleId->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticleId(Tag $articleId): self
+    {
+        if ($this->article_id->removeElement($articleId)) {
+            $articleId->removeCategory($this);
+        }
 
         return $this;
     }
