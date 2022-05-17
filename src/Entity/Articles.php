@@ -47,11 +47,11 @@ class Articles
     /**
      * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="Category")
      */
-    private $article_id;
+    private $Tag;
 
     public function __construct()
     {
-        $this->article_id = new ArrayCollection();
+        $this->Tag = new ArrayCollection();
     }
 
     public function getId(): ?int
