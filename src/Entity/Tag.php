@@ -42,7 +42,7 @@ class Tag
     /**
      * @ORM\Column(type="integer")
      */
-    private $tag_id;
+    private $Tag;
 
     public function __construct()
     {
