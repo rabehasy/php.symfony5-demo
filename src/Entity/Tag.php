@@ -22,7 +22,7 @@ class Tag
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -35,13 +35,18 @@ class Tag
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=category::class)
+     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="article_id")
      */
-    private $categorie;
+    private $Category;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $tag_id;
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
+        $this->Category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,12 +56,12 @@ class Tag
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
@@ -86,25 +91,37 @@ class Tag
     }
 
     /**
-     * @return Collection<int, category>
+     * @return Collection<int, Articles>
      */
-    public function getCategorie(): Collection
+    public function getCategory(): Collection
     {
-        return $this->categorie;
+        return $this->Category;
     }
 
-    public function addCategorie(category $categorie): self
+    public function addCategory(Articles $category): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
+        if (!$this->Category->contains($category)) {
+            $this->Category[] = $category;
         }
 
         return $this;
     }
 
-    public function removeCategorie(category $categorie): self
+    public function removeCategory(Articles $category): self
     {
-        $this->categorie->removeElement($categorie);
+        $this->Category->removeElement($category);
+
+        return $this;
+    }
+
+    public function getTagId(): ?int
+    {
+        return $this->tag_id;
+    }
+
+    public function setTagId(int $tag_id): self
+    {
+        $this->tag_id = $tag_id;
 
         return $this;
     }

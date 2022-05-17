@@ -121,17 +121,7 @@ class Category
         return $this;
     }
 
-    public function getCategorie(): ?string
-    {
-        return $this->Categorie;
-    }
-
-    public function setCategorie(string $Categorie): self
-    {
-        $this->Categorie = $Categorie;
-
-        return $this;
-    }
+    
 
     public function getCreatedate(): ?\DateTimeInterface
     {
