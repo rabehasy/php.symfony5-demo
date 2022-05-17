@@ -43,12 +43,7 @@ class Category
      * @ORM\Column(type="string", length=255)
      */
     
-    private $createdate;
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
@@ -133,15 +128,4 @@ class Category
         return $this;
     }
 
-    public function getCreatedate(): ?\DateTimeInterface
-    {
-        return $this->createdate;
-    }
-
-    public function setCreatedate(\DateTimeInterface $createdate): self
-    {
-        $this->createdate = $createdate;
-
-        return $this;
-    }
 }
