@@ -121,7 +121,7 @@ class Tag
 
     public function setTagId(int $tag_id): self
     {
-        $this->tag_id = $tag_id;
+        $this->Tag = $Tag;
 
         return $this;
     }
