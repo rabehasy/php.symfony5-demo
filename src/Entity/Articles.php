@@ -122,12 +122,12 @@ class Articles
     /**
      * @return Collection<int, Tag>
      */
-    public function getArticleId(): Collection
+    public function getTag(): Collection
     {
         return $this->article_id;
     }
 
-    public function addArticleId(Tag $articleId): self
+    public function addTag(Tag $articleId): self
     {
         if (!$this->article_id->contains($articleId)) {
             $this->article_id[] = $articleId;
@@ -137,7 +137,7 @@ class Articles
         return $this;
     }
 
-    public function removeArticleId(Tag $articleId): self
+    public function removeTag(Tag $articleId): self
     {
         if ($this->article_id->removeElement($articleId)) {
             $articleId->removeCategory($this);
