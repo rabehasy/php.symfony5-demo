@@ -121,17 +121,4 @@ class Category
         return $this;
     }
 
-    
-
-    public function getCreatedate(): ?\DateTimeInterface
-    {
-        return $this->createdate;
-    }
-
-    public function setCreatedate(\DateTimeInterface $createdate): self
-    {
-        $this->createdate = $createdate;
-
-        return $this;
-    }
 }
