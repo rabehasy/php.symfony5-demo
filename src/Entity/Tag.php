@@ -35,14 +35,14 @@ class Tag
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="article_id")
+     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="Tag")
      */
     private $Category;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $tag_id;
+    private $Tag;
 
     public function __construct()
     {
@@ -121,7 +121,7 @@ class Tag
 
     public function setTagId(int $tag_id): self
     {
-        $this->tag_id = $tag_id;
+        $this->Tag = $Tag;
 
         return $this;
     }
