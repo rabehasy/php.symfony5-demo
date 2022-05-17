@@ -35,7 +35,7 @@ class Tag
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="article_id")
+     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="Tag")
      */
     private $Category;
 
