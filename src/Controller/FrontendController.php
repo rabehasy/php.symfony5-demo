@@ -13,7 +13,7 @@ class FrontendController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('frontend/contact.html.twig', [
+        return $this->render('frontend/index.html.twig', [
             'name' => 'Nahary',
         ]);
     }
