@@ -39,12 +39,6 @@ class Category
      */
     private $articles;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    
-    private $createdate;
-
     public function __construct()
     {
         $this->articles = new ArrayCollection();

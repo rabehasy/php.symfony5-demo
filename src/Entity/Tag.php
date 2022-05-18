@@ -35,18 +35,13 @@ class Tag
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="Tag")
+     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="tags")
      */
-    private $Category;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $Tag;
+    private $articles;
 
     public function __construct()
     {
-        $this->Category = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -93,35 +88,23 @@ class Tag
     /**
      * @return Collection<int, Articles>
      */
-    public function getCategory(): Collection
+    public function getArticles(): Collection
     {
-        return $this->Category;
+        return $this->articles;
     }
 
-    public function addCategory(Articles $category): self
+    public function addArticle(Articles $article): self
     {
-        if (!$this->Category->contains($category)) {
-            $this->Category[] = $category;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
         }
 
         return $this;
     }
 
-    public function removeCategory(Articles $category): self
+    public function removeArticle(Articles $article): self
     {
-        $this->Category->removeElement($category);
-
-        return $this;
-    }
-
-    public function getTagId(): ?int
-    {
-        return $this->tag_id;
-    }
-
-    public function setTagId(int $tag_id): self
-    {
-        $this->Tag = $Tag;
+        $this->articles->removeElement($article);
 
         return $this;
     }

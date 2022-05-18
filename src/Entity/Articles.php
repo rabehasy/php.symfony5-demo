@@ -42,16 +42,16 @@ class Articles
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
      */
-    private $Category;
+    private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="Category")
+     * @ORM\ManyToMany(targetEntity=Tag::class, mappedBy="articles")
      */
-    private $Tag;
+    private $tags;
 
     public function __construct()
     {
-        $this->Tag = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,12 +109,12 @@ class Articles
 
     public function getCategory(): ?Category
     {
-        return $this->Category;
+        return $this->category;
     }
 
-    public function setCategory(?Category $Category): self
+    public function setCategory(?Category $category): self
     {
-        $this->Category = $Category;
+        $this->category = $category;
 
         return $this;
     }
@@ -122,25 +122,25 @@ class Articles
     /**
      * @return Collection<int, Tag>
      */
-    public function getTag(): Collection
+    public function getTags(): Collection
     {
-        return $this->article_id;
+        return $this->tags;
     }
 
-    public function addTag(Tag $articleId): self
+    public function addTag(Tag $tag): self
     {
-        if (!$this->article_id->contains($articleId)) {
-            $this->article_id[] = $articleId;
-            $articleId->addCategory($this);
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addArticle($this);
         }
 
         return $this;
     }
 
-    public function removeTag(Tag $articleId): self
+    public function removeTag(Tag $tag): self
     {
-        if ($this->article_id->removeElement($articleId)) {
-            $articleId->removeCategory($this);
+        if ($this->tags->removeElement($tag)) {
+            $tag->removeArticle($this);
         }
 
         return $this;
