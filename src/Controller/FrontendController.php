@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontendController extends AbstractController
 {
     /**
-     * @Route("/", name="app_frontend")
+     * @Route("/", name="frontend_default")
      */
     public function index(): Response
     {
@@ -17,4 +17,15 @@ class FrontendController extends AbstractController
             'name' => 'Nahary',
         ]);
     }
+
+    /**
+     * @Route("/contact.html", name="frontend_contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('frontend/contact.html.twig', [
+            'name' => 'Nahary',
+        ]);
+    }
 }
+

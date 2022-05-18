@@ -39,11 +39,10 @@ class Category
      */
     private $articles;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    
-   
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,18 +111,6 @@ class Category
                 $article->setCategory(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCategorie(): ?string
-    {
-        return $this->Categorie;
-    }
-
-    public function setCategorie(string $Categorie): self
-    {
-        $this->Categorie = $Categorie;
 
         return $this;
     }

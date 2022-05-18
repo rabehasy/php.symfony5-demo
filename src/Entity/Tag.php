@@ -22,7 +22,7 @@ class Tag
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Name;
+    private $name;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -35,13 +35,13 @@ class Tag
     private $updated_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity=category::class)
+     * @ORM\ManyToMany(targetEntity=Articles::class, inversedBy="tags")
      */
-    private $categorie;
+    private $articles;
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,12 +51,12 @@ class Tag
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
@@ -86,25 +86,25 @@ class Tag
     }
 
     /**
-     * @return Collection<int, category>
+     * @return Collection<int, Articles>
      */
-    public function getCategorie(): Collection
+    public function getArticles(): Collection
     {
-        return $this->categorie;
+        return $this->articles;
     }
 
-    public function addCategorie(category $categorie): self
+    public function addArticle(Articles $article): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
         }
 
         return $this;
     }
 
-    public function removeCategorie(category $categorie): self
+    public function removeArticle(Articles $article): self
     {
-        $this->categorie->removeElement($categorie);
+        $this->articles->removeElement($article);
 
         return $this;
     }
